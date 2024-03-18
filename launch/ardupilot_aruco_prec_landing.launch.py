@@ -56,6 +56,6 @@ def generate_launch_description():
         gz_sim,
         DeclareLaunchArgument('rviz', default_value='true',
                               description='Open RViz.'),
-        bridge, 
+        bridge,
         # rviz
     ])

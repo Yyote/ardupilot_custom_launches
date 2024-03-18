@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="assem">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="2.0817E-17 0 0.20045"
+        rpy="0 0 0" />
+      <mass
+        value="43.85" />
+      <inertia
+        ixx="2.4708"
+        ixy="-3.4694E-17"
+        ixz="1.4478E-16"
+        iyy="2.4708"
+        iyz="-6.3987E-18"
+        izz="1.1359" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://assem/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://assem/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="linl1">
+    <inertial>
+      <origin
+        xyz="0 -0.14955 -1.1102E-16"
+        rpy="0 0 0" />
+      <mass
+        value="43.85" />
+      <inertia
+        ixx="2.4708"
+        ixy="1.6072E-16"
+        ixz="3.4694E-17"
+        iyy="1.1359"
+        iyz="-3.1554E-18"
+        izz="2.4708" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://assem/meshes/linl1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://assem/meshes/linl1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint1"
+    type="prismatic">
+    <origin
+      xyz="0 0 0.35"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="linl1" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="0.5"
+      effort="300"
+      velocity="3" />
+  </joint>
+  <link
+    name="link2">
+    <inertial>
+      <origin
+        xyz="0.21724 0 -0.125"
+        rpy="0 0 0" />
+      <mass
+        value="14.727" />
+      <inertia
+        ixx="0.070229"
+        ixy="-2.2622E-18"
+        ixz="-2.821E-17"
+        iyy="0.49083"
+        iyz="1.3056E-20"
+        izz="0.45551" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://assem/meshes/link2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://assem/meshes/link2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="0.225 -0.065 0.125"
+      rpy="0 0 0" />
+    <parent
+      link="linl1" />
+    <child
+      link="link2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-785"
+      upper="785"
+      effort="100"
+      velocity="5" />
+  </joint>
+</robot>

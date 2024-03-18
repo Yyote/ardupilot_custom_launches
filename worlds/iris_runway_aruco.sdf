@@ -240,6 +240,16 @@
       <pose degrees="false">-29 545 0 0 0 3.14</pose>
     </include>
 
+    <!-- <include>
+      <uri>model://ebalonna</uri>
+      <pose degrees="false">2 0 0 0 0 3.14</pose>
+    </include> -->
+
+    <!-- <include>
+      <uri>model://assem</uri>
+      <pose degrees="false">-2 0 10 0 0.785 3.14</pose>
+    </include> -->
+
     <include>
       <uri>model://iris_ap_bc.sdf</uri>
       <pose degrees="true">0 0 0.195 0 0 90</pose>

@@ -1,0 +1,150 @@
+<sdf version='1.10'>
+  <model name='assem'>
+    <link name='base_link'>
+      <inertial>
+        <pose>2.0816999999999999e-17 0 0.20044999999999999 0 0 0</pose>
+        <mass>43.850000000000001</mass>
+        <inertia>
+          <ixx>2.4708000000000001</ixx>
+          <ixy>-3.4693999999999997e-17</ixy>
+          <ixz>1.4478000000000001e-16</ixz>
+          <iyy>2.4708000000000001</iyy>
+          <iyz>-6.3986999999999997e-18</iyz>
+          <izz>1.1358999999999999</izz>
+        </inertia>
+      </inertial>
+      <collision name='base_link_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://assem/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='base_link_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://assem/meshes/base_link.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint1' type='prismatic'>
+      <pose relative_to='base_link'>0 0 0.34999999999999998 1.5708 0 0</pose>
+      <parent>base_link</parent>
+      <child>link1</child>
+      <axis>
+        <xyz>0 1 0</xyz>
+        <limit>
+          <lower>0</lower>
+          <upper>0.5</upper>
+          <effort>300</effort>
+          <velocity>3</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='link1'>
+      <pose relative_to='joint1'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0 -0.14954999999999999 -1.1102e-16 0 0 0</pose>
+        <mass>43.850000000000001</mass>
+        <inertia>
+          <ixx>2.4708000000000001</ixx>
+          <ixy>1.6072e-16</ixy>
+          <ixz>3.4693999999999997e-17</ixz>
+          <iyy>1.1358999999999999</iyy>
+          <iyz>-3.1554000000000002e-18</iyz>
+          <izz>2.4708000000000001</izz>
+        </inertia>
+      </inertial>
+      <collision name='link1_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://assem/meshes/link1.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link1_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://assem/meshes/link1.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+    <joint name='joint2' type='revolute'>
+      <pose relative_to='link1'>0.22500000000000001 -0.065000000000000002 0.125 0 0 0</pose>
+      <parent>link1</parent>
+      <child>link2</child>
+      <axis>
+        <xyz>0 0 1</xyz>
+        <limit>
+          <lower>-785</lower>
+          <upper>785</upper>
+          <effort>100</effort>
+          <velocity>5</velocity>
+        </limit>
+        <dynamics>
+          <spring_reference>0</spring_reference>
+          <spring_stiffness>0</spring_stiffness>
+        </dynamics>
+      </axis>
+    </joint>
+    <link name='link2'>
+      <pose relative_to='joint2'>0 0 0 0 0 0</pose>
+      <inertial>
+        <pose>0.21723999999999999 0 -0.125 0 0 0</pose>
+        <mass>14.727</mass>
+        <inertia>
+          <ixx>0.070229</ixx>
+          <ixy>-2.2622000000000002e-18</ixy>
+          <ixz>-2.821e-17</ixz>
+          <iyy>0.49082999999999999</iyy>
+          <iyz>1.3056e-20</iyz>
+          <izz>0.45551000000000003</izz>
+        </inertia>
+      </inertial>
+      <collision name='link2_collision'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://assem/meshes/link2.STL</uri>
+          </mesh>
+        </geometry>
+      </collision>
+      <visual name='link2_visual'>
+        <pose>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <scale>1 1 1</scale>
+            <uri>model://assem/meshes/link2.STL</uri>
+          </mesh>
+        </geometry>
+        <material>
+          <diffuse>0.990199983 1 1 1</diffuse>
+          <ambient>0.990199983 1 1 1</ambient>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
