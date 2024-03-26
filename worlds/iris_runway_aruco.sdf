@@ -251,8 +251,13 @@
     </include> -->
 
     <include>
+      <uri>model://aruco_688</uri>
+      <pose degrees="true">-5 0 0 0 0 90</pose>
+    </include>
+
+    <include>
       <uri>model://iris_ap_bc.sdf</uri>
-      <pose degrees="true">0 0 0.195 0 0 90</pose>
+      <pose degrees="true">-5 0 15.205 0 0 90</pose>
     </include>
 
   </world>
