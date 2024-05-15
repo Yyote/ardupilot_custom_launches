@@ -18,7 +18,7 @@ from ament_index_python.packages import get_package_share_directory
 
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
-from launch.actions import IncludeLaunchDescription
+from launch.actions import IncludeLaunchDescription, ExecuteProcess
 from launch.conditions import IfCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
@@ -39,7 +39,12 @@ def generate_launch_description():
         }.items(),
     )
 
-
+    sitl = ExecuteProcess(
+        cmd=[[
+            'sim_vehicle.py -v ArduCopter -f gazebo-iris --model JSON',
+        ]],
+        shell=True
+    )
 
     # Bridge
     bridge = Node(
@@ -47,8 +52,12 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=['/camera@sensor_msgs/msg/Image@gz.msgs.Image',
                    '/camera_info@nav_msgs/msg/Odometry@gz.msgs.CameraInfo'],
-        # parameters=[{'qos_overrides./model/vehicle_blue.subscriber.reliability': 'reliable',
-                    #  'qos_overrides./model/vehicle_green.subscriber.reliability': 'reliable'}],
+        output='screen'
+    )
+
+    camera = Node(
+        package='aruco_precision_landing_ardupilot',
+        executable='aruco_coordinates_pub',
         output='screen'
     )
 
@@ -57,5 +66,7 @@ def generate_launch_description():
         DeclareLaunchArgument('rviz', default_value='true',
                               description='Open RViz.'),
         bridge,
+        sitl,
+        camera
         # rviz
     ])
