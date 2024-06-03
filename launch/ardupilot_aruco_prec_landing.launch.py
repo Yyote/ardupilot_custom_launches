@@ -55,11 +55,11 @@ def generate_launch_description():
         output='screen'
     )
 
-    camera = Node(
-        package='aruco_precision_landing_ardupilot',
-        executable='aruco_coordinates_pub',
-        output='screen'
-    )
+    # camera = Node(
+    #     package='aruco_precision_landing_ardupilot',
+    #     executable='aruco_infred_landing_node',
+    #     output='screen'
+    # )
 
     return LaunchDescription([
         gz_sim,
@@ -67,6 +67,6 @@ def generate_launch_description():
                               description='Open RViz.'),
         bridge,
         sitl,
-        camera
+        # camera
         # rviz
     ])
