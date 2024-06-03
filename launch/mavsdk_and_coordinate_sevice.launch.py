@@ -19,7 +19,8 @@ def generate_launch_description():
     ld.add_action(actions.Node(
         package="mavsdk_bridge",
         executable="precision_landing_transmitter",
-        name="prec_land_transmitter"
+        name="prec_land_transmitter",
+        emulate_tty=True, output='screen'
     ))
     
     ld.add_action(actions.Node(
