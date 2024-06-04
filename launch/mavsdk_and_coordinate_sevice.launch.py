@@ -66,7 +66,7 @@ def generate_launch_description():
         args = {
             'fcu_url' : 'udp://:14552@127.0.0.1:14552',
             # 'fcu_url' : '/dev/ttyUSB0:115200',
-            'tgt_system' : "1"
+            'tgt_system' : "1",
         }.items()
 
     ld.add_action(IncludeLaunchDescription(
