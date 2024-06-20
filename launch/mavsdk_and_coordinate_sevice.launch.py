@@ -20,19 +20,22 @@ def generate_launch_description():
         package="mavsdk_bridge",
         executable="precision_landing_transmitter",
         name="prec_land_transmitter",
-        emulate_tty=True, output='screen'
+        emulate_tty=True, output='screen',
+        namespace="wired_uav"
     ))
     
     ld.add_action(actions.Node(
         package="coordinate_conversion_py",
         executable="node",
-        name="coordinate_conversion_node"
+        name="coordinate_conversion_node",
+        namespace="wired_uav"
     ))
 
     ld.add_action(actions.Node(
         package="aruco_precision_landing_ardupilot",
         executable="aruco_infred_landing_node",
-        name="aruco_infred_landing_node"
+        name="aruco_infred_landing_node",
+        namespace="wired_uav"
     ))
     
     mavproxy = None
