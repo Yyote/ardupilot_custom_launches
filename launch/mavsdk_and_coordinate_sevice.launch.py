@@ -21,7 +21,10 @@ def generate_launch_description():
         executable="precision_landing_transmitter",
         name="prec_land_transmitter",
         emulate_tty=True, output='screen',
-        namespace="wired_uav"
+        namespace="wired_uav",
+        parameters=[
+            {"username": user},
+        ]
     ))
     
     ld.add_action(actions.Node(
