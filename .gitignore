@@ -1,0 +1,6 @@
+launch/__pycache__/
+launch/eeprom.bin
+launch/mav.parm
+launch/mav.tlog
+launch/mav.tlog.raw
+launch/terrain/
