@@ -53,7 +53,7 @@ def generate_launch_description():
     else:
         mavproxy = ExecuteProcess(
             cmd=[[
-                'mavproxy.py --out 127.0.0.1:14551 --out 127.0.0.1:14552 --master udp:127.0.0.1:14550',
+                'mavproxy.py --out 127.0.0.1:14552 --out 127.0.0.1:14553 --master udp:127.0.0.1:14551',
             ]],
             shell=True
         )
@@ -70,7 +70,7 @@ def generate_launch_description():
         }.items()
     else:
         args = {
-            'fcu_url' : 'udp://:14552@127.0.0.1:14552',
+            'fcu_url' : 'udp://:14553@127.0.0.1:14553',
             # 'fcu_url' : '/dev/ttyUSB0:115200',
             'tgt_system' : "1",
         }.items()
