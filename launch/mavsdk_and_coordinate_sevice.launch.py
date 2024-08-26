@@ -15,7 +15,6 @@ def generate_launch_description():
 
     ld = LaunchDescription()
     
-    
     ld.add_action(actions.Node(
         package="mavsdk_bridge",
         executable="precision_landing_transmitter",
@@ -53,7 +52,7 @@ def generate_launch_description():
     else:
         mavproxy = ExecuteProcess(
             cmd=[[
-                'mavproxy.py --out 127.0.0.1:14552 --out 127.0.0.1:14553 --master udp:127.0.0.1:14551',
+                'mavproxy.py --out 127.0.0.1:14551 --out 127.0.0.1:14552 --master udp:127.0.0.1:14550',
             ]],
             shell=True
         )
@@ -80,6 +79,32 @@ def generate_launch_description():
             get_package_share_directory('mavros'), 'launch/'),
             'px4.launch']), launch_arguments=args
     ))
+    
+    ld.add_action(actions.Node(
+        package="mavsdk_bridge",
+        executable="precision_landing_transmitter",
+        name="prec_land_transmitter",
+        emulate_tty=True, output='screen',
+        namespace="wired_uav",
+        parameters=[
+            {"username": user},
+        ]
+    ))
+    
+    ld.add_action(actions.Node(
+        package="coordinate_conversion_py",
+        executable="node",
+        name="coordinate_conversion_node",
+        namespace="wired_uav"
+    ))
+
+    ld.add_action(actions.Node(
+        package="aruco_precision_landing_ardupilot",
+        executable="aruco_infred_landing_node",
+        name="aruco_infred_landing_node",
+        namespace="wired_uav"
+    ))
+    
     
     
     return ld
