@@ -38,7 +38,7 @@ def generate_launch_description():
         package="aruco_precision_landing_ardupilot",
         executable="aruco_infred_landing_node",
         name="aruco_infred_landing_node",
-        namespace="wired_uav"
+#        namespace="wired_uav"
     ))
     
     mavproxy = None
@@ -46,7 +46,7 @@ def generate_launch_description():
     if user == 'firefly' or user == 'panda':
         mavproxy = ExecuteProcess(
             cmd=[[
-                'mavproxy.py --out 127.0.0.1:14551 --out 127.0.0.1:14552 --master /dev/ttyUSB0,115200',
+                'mavproxy.py --out 127.0.0.1:14551 --out 127.0.0.1:14552 --master /dev/ttyS7,921600',
             ]],
             shell=True
         )
