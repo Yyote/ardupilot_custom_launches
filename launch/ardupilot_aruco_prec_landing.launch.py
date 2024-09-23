@@ -52,6 +52,9 @@ def generate_launch_description():
         executable='parameter_bridge',
         arguments=['/camera@sensor_msgs/msg/Image@gz.msgs.Image',
                    '/camera_info@nav_msgs/msg/Odometry@gz.msgs.CameraInfo'],
+        remappings=[
+            ('/camera', '/wired_uav/camera_down')
+        ],
         output='screen'
     )
 
