@@ -13,6 +13,8 @@ from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 def generate_launch_description():
     user = getuser()
 
+    print(f'LAUNCH: \n\tCurrent working directory: {os.getcwd()}')
+
     ld = LaunchDescription()
     
     ld.add_action(actions.Node(
@@ -90,7 +92,7 @@ def generate_launch_description():
         }.items()
     else:
         args = {
-            'fcu_url' : 'udp://:14552@127.0.0.1:14552',
+            'fcu_url' : 'udp://:14553@127.0.0.1:14553',
             # 'fcu_url' : '/dev/ttyUSB0:115200',
             'tgt_system' : "1",
         }.items()
