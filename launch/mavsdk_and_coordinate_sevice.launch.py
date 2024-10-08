@@ -28,13 +28,14 @@ def generate_launch_description():
             # {"pld_kp": 4.8}, # Ku 7.75, Tu 0.623
             # {"pld_kd": 5.362},
             # {"pld_ki": 0.5},
-            {"pld_kp": 2.2}, # Ku 7.75, Tu 0.623
-            {"pld_kd": 0.55},
-            {"pld_ki": 0.0025},
+            {"pld_kp": 2.4}, # Ku 7.75, Tu 0.623
+            {"pld_kd": 0.5},
+            {"pld_ki": 0.0125},
             {"pld_max_spd": 0.5},
             {"pld_acc_radius_deg": 2.0},
-            {"pld_fin_appr_alt": 1.5}
-        ]
+            {"pld_fin_appr_alt": 0.5},
+            {'pld_srch_alt': 5.0},
+        ],
     ))
     
     ld.add_action(actions.Node(
@@ -45,21 +46,36 @@ def generate_launch_description():
     ))
 
     ld.add_action(actions.Node(
-        package="aruco_precision_landing_ardupilot",
+        package="object_detector_ros2",
         executable="aruco_infred_landing_node",
         name="aruco_infred_landing_node",
-        namespace="wired_uav"
+        namespace="wired_uav",
+        remappings=[
+            ('/wired_uav/camera', '/wired_uav/camera_down'),
+        ]
     ))
     
     ld.add_action(actions.Node(
         package="video_capture_ros2",
-        executable="video_capture_node",
+        executable="node",
         name="video_capture_node",
-#        namespace="wired_uav"
+        namespace="wired_uav",
         parameters=[
             {'video_topic_name': '/wired_uav/camera/detected_markers'},
             {'path_to_video_dir': f'/home/{user}/'},
-            {'framerate': '90'}
+            {'framerate': '60'}
+        ]
+    ))
+
+    ld.add_action(actions.Node(
+        package="video_capture_ros2",
+        executable="node_with_data",
+        name="video_capture_with_data_node",
+        namespace="wired_uav",
+        parameters=[
+            {'video_topic_name': '/wired_uav/camera/image'},
+            {'path_to_video_dir': f'/home/{user}/'},
+            {'filename': 'raw_camera_log'}
         ]
     ))
     
@@ -92,16 +108,10 @@ def generate_launch_description():
         }.items()
     else:
         args = {
-            'fcu_url' : 'udp://:14553@127.0.0.1:14553',
+            'fcu_url' : 'udp://:14552@127.0.0.1:14552',
             # 'fcu_url' : '/dev/ttyUSB0:115200',
             'tgt_system' : "1",
         }.items()
-
-    ld.add_action(IncludeLaunchDescription(
-        XMLLaunchDescriptionSource([os.path.join(
-            get_package_share_directory('mavros'), 'launch/'),
-            'px4.launch']), launch_arguments=args
-    ))
     
     ld.add_action(GroupAction([
         actions.PushRosNamespace("wired_uav"),
